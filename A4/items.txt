@@ -1,0 +1,13 @@
+"1",            "2",    "3",    "4",    "5",    "6",    "7",    "8",        "9",    "10",   "11",   "12"
+"12345xxx_",    "A",    "B",    "C",    "D",    "E",    "F",    "skills",   "none", "None", "12.0", "G"
+
+12352XXX-,title1,Poster name,Melbourne,Victoria,Australia,2012-01-01,Executive,Internship,Skill 1,Skill 2,None,100000.0,
+55555TTT^,TIIIItle,Poooooster,add,reee,sss,1949-10-01,Junior,Part-time,java,python,None,53432.0,qffqw, hhaof
+11111aaa_,ttt,name,City,State,Country,1010-05-04,Junior,Full-time,Skilla , Skill b,None,40001.0,descriptions
+
+12341mmm_,afqfwwf,qfwfq,New York,state,USA,2022-02-02,Junior,Part-time,skills 0,None,None,None,40000,
+12342mmm_,afqfwwf,qfwfq,New York,state,USA,2022-02-02,Junior,Part-time,skills 0,None,None,None,70000.0,
+
+12352XXA-,title1,Poster name,Melbourne,Victoria,Australia,2012-01-01,Junior,Full-time,Skill 1,Skill 2,None,60000.0,
+12352XXB-,title1,Poster name,Melbourne,Victoria,Australia,2012-01-01,Junior,Full-time,Skill 1,Skill 2,None,60000.0,
+
