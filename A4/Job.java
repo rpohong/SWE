@@ -481,23 +481,26 @@ public class Job {
 //            System.out.println("new data not accepted");
 //            return false;}
 
+        String[] originalStr = transToList(findString(getJobNumber()));  // the old ver of string
 
-        String[] originalStr = originalString();  // the old ver of string
+        String jobexp = originalStr[7];
+        double oldSalary = Double.parseDouble(originalStr[12]);
 
         if (!addJob()){  // if data accepted
             return false;
         }
-        if (!updateCo2Junior(originalStr)){
+
+        if (!updateCo2Junior(jobexp,oldSalary)) {
             return false;
         }
-        if (!updateCo2Else(originalStr)){
+        System.out.println("2");
+
+        if (!updateCo2Else(jobexp,oldSalary)){
             return false;
         }
         if (!updateCo3JobType(originalStr)){
             return false;
         }
-
-
 
         String fin = getAll();
 
@@ -747,6 +750,8 @@ public class Job {
 
 
     public String[] originalString(){
+        System.out.println(" the file str");
+//        String[] originalStr = transToList(findString(getJobNumber()));  // the old ver of string
 
         String fileString = findString(getJobNumber()); // the string in file
 
@@ -771,42 +776,45 @@ public class Job {
         }
         return true;
     }
-    public boolean updateCo2Junior(String[] fileString){
-        Scanner scan =new Scanner(System.in);
-        // Junior + (<10%)
-//        System.out.println(findString(getJobNumber()));
-        String[] orgStr = transToList(findString(getJobNumber()));
-
-//        System.out.println(orgStr[13]);
-
-
-        double orgSalary = Double.parseDouble(orgStr[13].replace(",",""));
-        double upperlimite = orgSalary* (1.1);
-
+    public boolean updateCo2Junior(String oldjobexp, double oldSalary){
+        System.out.println("COnd2");
+        // Junior + (<10%
+        double upperlimite = oldSalary* (1.1);
 
         System.out.println(getJobSalary()+"<"+upperlimite);
-        System.out.println((getJobSalary()<=upperlimite));
-        if (orgStr[7].equalsIgnoreCase("Junior".replace(",",""))){
+        System.out.println(getJobSalary()<=upperlimite);
+        System.out.println(" start ");
+        if (oldjobexp.equalsIgnoreCase("Junior".replace(",",""))){
             if(getJobSalary()<=upperlimite){  // inside of range
+                System.out.println("pass");
                 return true;}
+            else {
+                System.out.println(" wromhg !");
+                return false;
+            }
         } //the salary of Junior jobs should not be increased by more than 10%.
 
-        System.out.println("acturally = "+ getJobSalary()+ " which should be below than"+upperlimite);
-        return false;
+        System.out.println("out ");
+        return true;
     }
 
 
-    public boolean updateCo2Else(String[] fileString){
+    public boolean updateCo2Else(String oldjobexp, double oldSalary){
         // rest + ( 20% - 40%)
-        String[] orgStr = fileString;
-        double orgSalary = Double.parseDouble(fileString[13].replace(",",""));
+
+
+        double orgSalary =oldSalary;
+
         double increaseLimit_low = orgSalary* (1+0.2);
         double increaseLimit_high = orgSalary* (1+0.4);
-        if (!(fileString[7].equalsIgnoreCase("Junior"))){// when not Junior
-            if (getJobSalary() > increaseLimit_high && getJobSalary() < increaseLimit_low) {
-                // new > 20%+  and new < 40%+
-                return true;
-            } //"The salary of all jobs except Junior jobs can be increased by between 20% and 40%"
+
+        if ( oldjobexp.equalsIgnoreCase("Junior")){  // when old one is "Junior" exp level
+            if (!(getJobExperienceLevel().equalsIgnoreCase("Junior"))){// when is not Junior after updates
+                if (getJobSalary() > increaseLimit_high && getJobSalary() < increaseLimit_low) {
+                    // new > 20%+  and new < 40%+
+                    return true;
+                } //"The salary of all jobs except Junior jobs can be increased by between 20% and 40%"
+            }
         }
         return false;
     }
@@ -842,38 +850,12 @@ public class Job {
         String exp =  "Executive";
         System.out.println(C6_PtJob(exp,type));
 */
-
-        int selection = 0;
         boolean prog =true;
-
-
-//        Job job = new Job("12345mmm_", "A",
-//                "B", "City,State,Country",
-//                "YYYY-MM-DD", "E",
-//                "Volunteer", new String[]{"skill 1,skill 2,skill 3"},
-//                12, "G");
-
-        Job job = new Job("12345mmm_","Book Title","Poster Name","Melbourne,Victoria,Australia",
-                "2012-01-01", "Senior","F",new String[]{"Skill 1","Skill 2","None"},100000,"G");
-
-
-        System.out.println("=======");
-        System.out.println(findString(job.getJobNumber()));
-        System.out.println("=======");
-
-        String[] originalStr = job.originalString();
-        System.out.println("\ncompareing");
-
-        // job type
-//        String newJobType = originalStr[7];
-        String orgJobType ="Full-time";
-        System.out.println("the original "+orgJobType);
-        System.out.println("the new "+job.getJobType());
-
-
-        System.out.println("after changes");
-        System.out.println(job.getJobType());
-
+        Job job = new Job("12345mmm_", "A",
+                "B", "City,State,Country",
+                "YYYY-MM-DD", "E",
+                "Volunteer", new String[]{"skill 1,skill 2,skill 3"},
+                12, "G");
 
 
 
@@ -884,9 +866,7 @@ public class Job {
 //            }
 //            System.out.println(job.addJob());
 
-
-
-        System.out.println("================================");
+        int selection = 0;
         do {  // clear the current value by default
             selection = menu(); // display menus
             while (selection != 0) {
@@ -908,6 +888,7 @@ public class Job {
                     }
                     break;
                 } else if (selection == 2) {
+                    System.out.println("=========in=======");
                     if (job.updateJob()){
                         removeLineFromFile(job.getJobNumber());// remove original line from file
                         String finalStr = job.getAll(); // get new string
