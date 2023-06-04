@@ -1,1 +1,32 @@
 the code here is the final ver
+
+
+
+Hi , there are a notes "After submitttion" , the original code were not changed AFTER submitting
+
+there are couple code block were not used but stays in main function named as updateAndSet() and getNewinputs()
+in UupdateJob() function 
+i was apply the idea of find and grab the String from file, then user select the part that they want to update as much as they want 
+, then system collect the final verision then upload to file and remove the old one,
+and personaly i think its better for user to select and updates... 
+
+and during my reviewing of this submitting, i relized that the form of Job job() this kind of input method and verify by mutiple if condition , 
+the inputs will be required in correct fromatting . like the 14 element ( there are 3 in address, and 3 in skill , they have been sepreated by "," ) 
+
+also because i have put the ( addJob() verifiication at the head of updateJob, it will also be a strickly checking in update job part
+
+what i want to says, is that all the data check i was used the updateAndSet() this block to test the data, where it have all pass the result as you see in items.txt
+
+and for verifiy this assessment , it will be necessary to check all the updating Sting( data ) that is it match with addJob() at any time, 
+and there can directly add a line of old data in items.txt for you to test the upDateJob() , 
+
+>>> try to have  updateAndSet() and getNewinputs() in main function , 
+where the  updateAndSet() set for asking and loading the old data in file,
+and getNewinputs() is the repeatable selection to update the sepecific data that user selected . 
+
+
+incase that the Job job() verification and related test data went error , please try to check the data that in test data and items. txt ,
+or use the method above to upload the data one by one 
+
+
+thanks
